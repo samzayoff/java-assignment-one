@@ -21,53 +21,69 @@ function getName() {
     return name;
 }
 
+function getRollNumber() {
+    let roll = prompt("Enter your Roll number:");
+
+    if (roll === null || roll.trim() === "") {
+        alert("Roll number cannot be empty.");
+        return getRollNumber();
+    }
+
+    const rollRegex = /^\d+$/;
+
+    if (!rollRegex.test(roll)) {
+        alert("Invalid roll number. Please enter numbers only.");
+        return getRollNumber();
+    }
+
+    return roll;
+}
+
+function getMarks(subject) {
+    while (true) {
+        let marks = parseFloat(prompt(`Enter your ${subject} marks out of 100:`));
+
+        if (isNaN(marks)) {
+            alert(`Invalid input. Please enter a number for ${subject}.`);
+        } else if (marks < 0 || marks > 100) {
+            alert(`Invalid ${subject} marks. Please enter a number between 0 and 100.`);
+        } else {
+            return marks;
+        }
+    }
+}
+
 let name = getName();
-let roll = prompt('Enter your Roll number:');
-let html, css, java;
+let roll = getRollNumber();
 
-while (true) {
-    html = parseFloat(prompt('Enter your HTML marks out of 100:'));
-    if (isNaN(html) || html < 0 || html > 100) {
-        alert('Invalid HTML marks. Please enter a number between 0 and 100.');
-    } else {
-        break;
-    }
-}
+let web = getMarks("Web Engineering");
+let AI = getMarks("Artificial Intelligence");
+let python = getMarks("Python");
+let dsa = getMarks("Data Structures and Algorithms");
+let dbms = getMarks("Database Management Systems");
 
-while (true) {
-    css = parseFloat(prompt('Enter your CSS marks out of 100:'));
-    if (isNaN(css) || css < 0 || css > 100) {
-        alert('Invalid CSS marks. Please enter a number between 0 and 100.');
-    } else {
-        break;
-    }
-}
-
-while (true) {
-    java = parseFloat(prompt('Enter your JavaScript marks out of 100:'));
-    if (isNaN(java) || java < 0 || java > 100) {
-        alert('Invalid JavaScript marks. Please enter a number between 0 and 100.');
-    } else {
-        break;
-    }
-}
-
-let totalMarks = 300;
-let obtainedMarks = html + css + java;
+let totalMarks = 500;
+let obtainedMarks = web + AI + python + dsa + dbms;
 let percentage = (obtainedMarks / totalMarks) * 100;
 
-alert("Name: " + name + "\n" +
+alert(
+    "Name: " + name + "\n" +
     "Roll Number: " + roll + "\n" +
-    "HTML Marks: " + html + "\n" +
-    "CSS Marks: " + css + "\n" +
-    "JavaScript Marks: " + java + "\n" +
+    "Web Engineering Marks: " + web + "\n" +
+    "Artificial Intelligence Marks: " + AI + "\n" +
+    "Python Marks: " + python + "\n" +
+    "Data Structures and Algorithms Marks: " + dsa + "\n" +
+    "Database Management Systems Marks: " + dbms + "\n" +
     "Total Marks: " + obtainedMarks + "\n" +
-    "Percentage: " + percentage.toFixed(2) + "%");
+    "Percentage: " + percentage.toFixed(2) + "%"
+);
 
 console.log("Name:", name);
 console.log("Roll Number:", roll);
-console.log("HTML:", html);
-console.log("CSS:", css);
-console.log("JavaScript:", java);
+console.log("Web Engineering:", web);
+console.log("Artificial Intelligence:", AI);
+console.log("Python:", python);
+console.log("Data Structures and Algorithms:", dsa);
+console.log("Database Management Systems:", dbms);
 console.log("Total Marks:", obtainedMarks);
 console.log("Percentage:", percentage.toFixed(2) + "%");
